@@ -1,0 +1,59 @@
+version: 2.1
+
+executors:
+  default:
+    working_directory: ~/workspace
+    docker:
+      - image: circleci/node:12.16.2
+
+commands:
+  save_app_modules:
+    steps:
+      - save_cache:
+          paths: ~/workspace/node_modules
+          key: modules-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum ".node-version" }}
+
+  restore_app_modules:
+    steps:
+      - restore_cache:
+          key: modules-{{ .Branch }}-{{ checksum "yarn.lock" }}-{{ checksum ".node-version" }}
+
+jobs:
+  install:
+    executor: default
+    steps:
+      - checkout
+      - restore_app_modules
+      - run:
+          name: install
+          command: npm run install
+  build:
+    executor: default
+    steps:
+      - checkout
+      - restore_app_modules
+      - run:
+          name: build
+          command: npm run build
+  # deploy:
+  #   executor: default
+  #   steps:
+  #     - checkout
+  #     - restore_app_modules
+  #     - deploy:
+  #         name: Deploy
+  #         command: npm run deploy
+
+workflows:
+  process:
+    jobs:
+      - install
+      - build:
+          requires:
+            - install
+      # - deploy:
+      #     requires:
+      #       - build
+      #     filters:
+      #       branches:
+      #         only: master
