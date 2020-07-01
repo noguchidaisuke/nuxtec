@@ -36,14 +36,14 @@ jobs:
       - run:
           name: build
           command: npm run build
-  # deploy:
-  #   executor: default
-  #   steps:
-  #     - checkout
-  #     - restore_app_modules
-  #     - deploy:
-  #         name: Deploy
-  #         command: npm run deploy
+  deploy:
+    executor: default
+    steps:
+      - checkout
+      - restore_app_modules
+      - deploy:
+          name: Deploy
+          command: npm run deploy
 
 workflows:
   process:
@@ -52,9 +52,9 @@ workflows:
       - build:
           requires:
             - install
-      # - deploy:
-      #     requires:
-      #       - build
-      #     filters:
-      #       branches:
-      #         only: master
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
