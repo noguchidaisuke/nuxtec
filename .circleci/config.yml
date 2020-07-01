@@ -43,10 +43,13 @@ jobs:
     executor: aws-cli/default
     steps:
       - checkout
-      - restore_app_modules
+      - run:
+          name: install
+          command: npm run install
+      - aws-cli/setup
       - deploy:
           name: Deploy
-          command: npm run deploy
+          command: npm run deploy-s3
 
 workflows:
   process:

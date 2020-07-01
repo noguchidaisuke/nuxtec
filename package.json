@@ -4,15 +4,6 @@
   "description": "My majestic Nuxt.js project",
   "author": "github daisukenoguchi",
   "private": true,
-  "config": {
-    "s3BucketName": "tk.nuxtec.assets.nuxtec.tk",
-    "region": "ap-northeast-1",
-    "_nuxtDir": ".nuxt/dist/client",
-    "assetsDir": "client/static/assets",
-    "cloudFormationStackName": "NuxtExpressSame",
-    "functionName": "AwsServerlessExpressFunction",
-    "accountId": "231421272561"
-  },
   "scripts": {
     "dev": "NODE_ENV=development nodemon server/index.js --watch server",
     "start": "NODE_ENV=production node server/index.js",
@@ -21,11 +12,11 @@
     "generate": "nuxt generate",
     "heroku-postbuild": "npm run build",
     "cf-clear": "aws cloudfront create-invalidation --distribution-id E2QTJHMA5Q0N00 --paths '/*'",
-    "s3-ls": "aws s3 ls $npm_package_config_s3BucketName",
-    "deploy-dist": "aws s3 sync .nuxt/dist/client s3://$npm_package_config_s3BucketName/_nuxt --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers",
-    "deploy-assets": "aws s3 sync client/static/assets s3://$npm_package_config_s3BucketName/assets --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers",
-    "delete-dist": "aws s3 rm s3://$npm_package_config_s3BucketName/_nuxt --recursive",
-    "delete-assets": "aws s3 rm s3://$npm_package_config_s3BucketName/assets --recursive",
+    "s3-ls": "aws s3 ls tk.nuxtec.assets.nuxtec.tk",
+    "deploy-dist": "aws s3 sync .nuxt/dist/client s3://tk.nuxtec.assets.nuxtec.tk/_nuxt --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers",
+    "deploy-assets": "aws s3 sync client/static/assets s3://tk.nuxtec.assets.nuxtec.tk/assets --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers",
+    "delete-dist": "aws s3 rm s3://tk.nuxtec.assets.nuxtec.tk/_nuxt --recursive",
+    "delete-assets": "aws s3 rm s3://tk.nuxtec.assets.nuxtec.tk/assets --recursive",
     "deploy-s3": "npm run delete-dist && npm run delete-assets && npm run deploy-dist && npm run deploy-assets",
     "deploy": "npm run deploy-s3 && sls deploy"
   },
