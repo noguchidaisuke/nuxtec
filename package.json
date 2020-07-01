@@ -26,9 +26,8 @@
     "deploy-assets": "aws s3 sync client/static/assets s3://$npm_package_config_s3BucketName/assets --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers",
     "delete-dist": "aws s3 rm s3://$npm_package_config_s3BucketName/_nuxt --recursive",
     "delete-assets": "aws s3 rm s3://$npm_package_config_s3BucketName/assets --recursive",
-    "deploy-s3": "npm run delete-dist && npm run deploy-dist",
-    "deploy-s3-gw": "aws s3 sync .nuxt/dist/client s3://$npm_package_config_s3BucketName/nuxt --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers",
-    "deploy": "npm run build && npm run deploy-s3 && sls deploy"
+    "deploy-s3": "npm run delete-dist && npm run delete-assets && npm run deploy-dist && npm run deploy-assets",
+    "deploy": "npm run deploy-s3 && sls deploy"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",

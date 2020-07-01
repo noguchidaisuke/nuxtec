@@ -6,6 +6,9 @@ executors:
     docker:
       - image: circleci/node:12.16.2
 
+orbs:
+  aws-cli: circleci/aws-cli@1.2.0
+
 commands:
   save_app_modules:
     steps:
