@@ -40,7 +40,7 @@ jobs:
           name: build
           command: npm run build
   deploy:
-    executor: default
+    executor: aws-cli/default
     steps:
       - checkout
       - restore_app_modules
