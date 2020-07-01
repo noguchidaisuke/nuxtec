@@ -16,7 +16,7 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon server/index.js --watch server",
     "start": "NODE_ENV=production node server/index.js",
-    "build": "rm -rf .nuxt/dist && nuxt build",
+    "build": "nuxt build",
     "nuxt-start": "nuxt start",
     "generate": "nuxt generate",
     "heroku-postbuild": "npm run build",
