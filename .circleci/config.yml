@@ -62,12 +62,9 @@ workflows:
   process:
     jobs:
       - install
-      - build:
-          requires:
-            - install
       - deploy:
           requires:
-            - build
+            - install
           filters:
             branches:
               only: master
