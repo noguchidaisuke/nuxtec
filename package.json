@@ -18,7 +18,7 @@
     "delete-dist": "aws s3 rm s3://tk.nuxtec.assets.nuxtec.tk/_nuxt --recursive",
     "delete-assets": "aws s3 rm s3://tk.nuxtec.assets.nuxtec.tk/assets --recursive",
     "deploy-s3": "npm run delete-dist && npm run delete-assets && npm run deploy-dist && npm run deploy-assets",
-    "deploy": "npm run deploy-s3 && sls deploy"
+    "deploy": "npm run deploy-s3 && sls deploy && npm run cf-clear"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
