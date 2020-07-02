@@ -8,7 +8,7 @@ executors:
 
 orbs:
   aws-cli: circleci/aws-cli@1.2.0
-  serverless: circleci/serverless@1.0.1
+  serverless: circleci/serverless-framework@1.0.1
 
 commands:
   save_app_modules:
