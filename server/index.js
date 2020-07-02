@@ -1,9 +1,7 @@
 const consola           = require('consola')
 const app               = require('express')()
-// const app               = require('../api/server.js')
 require('dotenv').config()
-process.env.BASE_URL = 'http://localhost:9004/'
-
+const cacheMiddleware = require('./middleware/cache-middleware')
 
 const { Nuxt, Builder } = require('nuxt')
 const config            = require('../nuxt.config.js')
@@ -21,7 +19,7 @@ async function start() {
     const builder = new Builder(nuxt)
     await builder.build()
   }
-
+  app.use(cacheMiddleware)
   app.use(nuxt.render)
 
   app.listen(port, host)

@@ -1,12 +1,13 @@
-const app      = require('express')()
+const app             = require('express')()
+const cacheMiddleware = require('./middleware/cache-middleware')
 require('dotenv').config()
-// const app      = require('../api/server.js')
+
 
 const { Nuxt } = require('nuxt')
 const config   = require('../nuxt.config.js')
 const nuxt = new Nuxt(config)
 
-app.use(async (req, res, next) => {
+app.use(cacheMiddleware, async (req, res, next) => {
   await nuxt.ready()
   nuxt.render(req, res, next)
 })

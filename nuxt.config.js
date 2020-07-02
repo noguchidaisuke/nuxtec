@@ -45,7 +45,6 @@ module.exports =  {
   axios: {
     // baseURL: process.env.BASE_URL || 'http://localhost:9004/',
     baseURL: 'https://d21iuqrezm3div.cloudfront.net/',
-    // baseURL: 'https://w9yd2ly2yj.execute-api.ap-northeast-1.amazonaws.com/prod/',
     credentials : true
   },
   toast: {
@@ -69,10 +68,6 @@ module.exports =  {
     '../api/server.js'
   ],
   build: {
-    // publicPath: 'https://d21iuqrezm3div.cloudfront.net/nuxt/',
-    /*
-    ** You can extend webpack config here
-    */
     extend (config, ctx) {
     }
   }
