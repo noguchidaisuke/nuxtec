@@ -52,9 +52,12 @@ jobs:
           name: build
           command: npm run build
       - aws-cli/setup
-      - deploy:
+      - deploy-s3:
           name: Deploy
           command: npm run deploy-s3
+      - deploy-api:
+          name: deploy aws resources
+          command: sls deploy
 
 workflows:
   process:
