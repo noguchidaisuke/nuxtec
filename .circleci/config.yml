@@ -41,6 +41,8 @@ jobs:
           command: npm run build
   deploy:
     executor: aws-cli/default
+    environment:
+      AWS_DEFAULT_REGION: ap-northeast-1
     steps:
       - checkout
       - run:
