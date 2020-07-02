@@ -32,14 +32,14 @@ jobs:
           name: install
           command: npm install
       - save_app_modules
-  build:
-    executor: default
-    steps:
-      - checkout
-      - restore_app_modules
-      - run:
-          name: build
-          command: npm run build
+  # build:
+  #   executor: default
+  #   steps:
+  #     - checkout
+  #     - restore_app_modules
+  #     - run:
+  #         name: build
+  #         command: npm run build
   deploy:
     executor: default
     environment:
@@ -47,13 +47,10 @@ jobs:
     steps:
       - checkout
       - restore_app_modules
-      # - run:
-      #     name: install
-      #     command: npm install
-      # - run:
-      #     name: build
-      #     command: npm run build
       - aws-cli/setup
+      - run:
+          name: build
+          command: npm run build
       - run:
           name: deploy-s3
           command: npm run deploy-s3
