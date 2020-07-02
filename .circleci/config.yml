@@ -48,6 +48,9 @@ jobs:
       - run:
           name: install
           command: npm install
+      - run:
+          name: build
+          command: npm run build
       - aws-cli/setup
       - deploy:
           name: Deploy
