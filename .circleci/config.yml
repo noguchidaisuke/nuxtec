@@ -8,6 +8,7 @@ executors:
 
 orbs:
   aws-cli: circleci/aws-cli@1.2.0
+  serverless: circleci/serverless@1.0.1
 
 commands:
   save_app_modules:
@@ -40,24 +41,25 @@ jobs:
           name: build
           command: npm run build
   deploy:
-    executor: aws-cli/default
+    executor: default
     environment:
       AWS_DEFAULT_REGION: ap-northeast-1
     steps:
       - checkout
-      - run:
-          name: install
-          command: npm install
-      - run:
-          name: build
-          command: npm run build
+      - restore_app_modules
+      # - run:
+      #     name: install
+      #     command: npm install
+      # - run:
+      #     name: build
+      #     command: npm run build
       - aws-cli/setup
       - run:
           name: deploy-s3
           command: npm run deploy-s3
-      - run:
-          name: deploy api resources
-          command: sls deploy
+      # - run:
+      #     name: deploy api resources
+      #     command: sls deploy
 
 workflows:
   process:
