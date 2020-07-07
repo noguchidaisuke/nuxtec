@@ -8,6 +8,7 @@ provider:
 
 plugins:
   - serverless-apigw-binary
+  - serverless-plugin-warmup
 
 custom:
   STAGE: ${file(./config/env.yml):STAGE}

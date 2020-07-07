@@ -54,5 +54,8 @@
     "serverless-http": "^2.5.0",
     "stripe": "^8.56.0",
     "vuex-persistedstate": "^3.0.1"
+  },
+  "devDependencies": {
+    "serverless-plugin-warmup": "^4.9.0"
   }
 }
